@@ -1,6 +1,7 @@
 import {  Box,Stack, Button, Checkbox, CssBaseline,  FormControl, FormControlLabel, FormLabel, Link, TextField, Typography} from '@mui/material';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
+import {PersonOutline , Password} from '@mui/icons-material';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -50,12 +51,23 @@ function SignUp() {
     <CssBaseline enableColorScheme />
     <SignInContainer direction="column" justifyContent="space-between">
       <Card variant="outlined">
+      <Box
+  component="img"
+  sx={{
+    width:"50px",
+    margin:"0 auto",
+    borderRadius:"50%"
+  }}
+  alt="The house from the offer."
+  src="/ghalam.png"
+/>
         <Typography
           component="h1"
           variant="h4"
-          sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
+          alignSelf={'center'}
+          sx={{ fontSize: 'clamp(24px, 10vw, 16px)' }}
         >
-          Sign in
+        ورود
         </Typography>
         <Box
           component="form"
@@ -68,7 +80,10 @@ function SignUp() {
           }}
         >
           <FormControl >
-            <FormLabel htmlFor="email">Email</FormLabel>
+            <FormLabel htmlFor="email" sx={{display:"flex"}}>
+              ایمیل
+            <PersonOutline />
+            </FormLabel>
             <TextField
               id="email"
               type="email"
@@ -82,7 +97,10 @@ function SignUp() {
             />
           </FormControl>
           <FormControl>
-            <FormLabel htmlFor="password">Password</FormLabel>
+          <FormLabel htmlFor="email" sx={{display:"flex"}}>
+            رمز عبور
+            <Password/>
+          </FormLabel>
             <TextField
               name="password"
               placeholder="••••••"
@@ -97,33 +115,33 @@ function SignUp() {
           </FormControl>
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            label="مرا به خاطر بسپار"
           />
           <Button
             type="submit"
             fullWidth
             variant="contained"
           >
-            Sign in
+            ورود
           </Button>
           <Link
             component="button"
             type="button"
             variant="body2"
-            sx={{ alignSelf: 'center' }}
+            sx={{ alignSelf: 'center' , fontWeight : 700 ,textDecoration:"none",borderBottom: 1 ,borderBottomStyle:"dashed"}}
           >
-            Forgot your password?
+            رمز عبور خود را فراموش کرده اید؟
           </Link>
         </Box>
         
           <Typography sx={{ textAlign: 'center' }}>
-            Don&apos;t have an account?{' '}
+          هنوز حساب کاربری ندارید؟
             <Link
-              href="/material-ui/getting-started/templates/sign-in/"
+              href="/signup"
               variant="body2"
-              sx={{ alignSelf: 'center' }}
+              sx={{ alignSelf: 'center', fontWeight : 700 ,textDecoration:"none",borderBottom: 1 ,borderBottomStyle:"dashed"}}
             >
-              Sign up
+              ثبت نام
             </Link>
           </Typography>
       </Card>

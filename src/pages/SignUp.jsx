@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {  Box,Stack, Button, Checkbox, CssBaseline, FormControl, FormControlLabel, FormLabel, Link, TextField, Typography} from '@mui/material';
+import {  Box,Stack, Button, CssBaseline, FormControl, FormLabel, Link, TextField, Typography} from '@mui/material';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 
@@ -16,10 +16,10 @@ const Card = styled(MuiCard)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
     width: '450px',
   },
-  // ...theme.applyStyles('dark', {
-  //   boxShadow:
-  //     'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
-  // }),
+  ...theme.applyStyles('dark', {
+    boxShadow:
+      'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
+  }),
 }));
 
 const SignUpContainer = styled(Stack)(({ theme }) => ({
@@ -109,12 +109,23 @@ function SignUp() {
     <CssBaseline enableColorScheme />
       <SignUpContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">
+        <Box
+  component="img"
+  sx={{
+    width:"50px",
+    margin:"0 auto",
+    borderRadius:"50%"
+  }}
+  alt="The house from the offer."
+  src="/ghalam.png"
+/>
           <Typography
             component="h1"
             variant="h4"
-            sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
+            alignSelf={'center'}
+            sx={{ fontSize: 'clamp(24px, 10vw, 16px)' }}
           >
-            Sign up
+            ثبت نام
           </Typography>
           <Box
             component="form"
@@ -122,21 +133,20 @@ function SignUp() {
             sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
           >
             <FormControl>
-              <FormLabel htmlFor="name">Full name</FormLabel>
+              <FormLabel htmlFor="name">اسم</FormLabel>
               <TextField
                 autoComplete="name"
                 name="name"
                 required
                 fullWidth
                 id="name"
-                placeholder="Jon Snow"
                 error={nameError}
                 helperText={nameErrorMessage}
                 color={nameError ? 'error' : 'primary'}
               />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="email">Email</FormLabel>
+              <FormLabel htmlFor="email">ایمیل</FormLabel>
               <TextField
                 required
                 fullWidth
@@ -151,12 +161,12 @@ function SignUp() {
               />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="password">Password</FormLabel>
+              <FormLabel htmlFor="password">رمزعبور</FormLabel>
               <TextField
                 required
                 fullWidth
                 name="password"
-                placeholder="••••••"
+                placeholder="•••••"
                 type="password"
                 id="password"
                 autoComplete="new-password"
@@ -166,27 +176,23 @@ function SignUp() {
                 color={passwordError ? 'error' : 'primary'}
               />
             </FormControl>
-            <FormControlLabel
-              control={<Checkbox value="allowExtraEmails" color="primary" />}
-              label="I want to receive updates via email."
-            />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               onClick={validateInputs}
             >
-              Sign up
+              ثبت نام
             </Button>
           </Box>
             <Typography sx={{ textAlign: 'center' }}>
-              Already have an account?{' '}
+              قبلا ثبت نام کرده اید؟{' '}
               <Link
-                href="/material-ui/getting-started/templates/sign-in/"
+                href="/login"
                 variant="body2"
-                sx={{ alignSelf: 'center' }}
+                sx={{ alignSelf: 'center', fontWeight : 700 ,textDecoration:"none",borderBottom: 1 ,borderBottomStyle:"dashed" }}
               >
-                Sign in
+                ورود
               </Link>
             </Typography>
         </Card>
