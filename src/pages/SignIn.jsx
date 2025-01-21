@@ -52,15 +52,14 @@ function SignUp() {
     <SignInContainer direction="column" justifyContent="space-between">
       <Card variant="outlined">
       <Box
-  component="img"
-  sx={{
-    width:"50px",
-    margin:"0 auto",
-    borderRadius:"50%"
-  }}
-  alt="The house from the offer."
-  src="/ghalam.png"
-/>
+        component="img"
+        sx={{
+          width:"50px",
+          margin:"0 auto",
+        }}
+        alt="Logo"
+        src="/Logo.svg"
+      />
         <Typography
           component="h1"
           variant="h4"

@@ -6,7 +6,7 @@ const theme = createTheme({
   palette: {
     mode: 'light', 
     primary: {
-      main: '#1976d2', 
+      main: '#444BFF', 
       contrastText: '#ffffff', 
     },
     secondary: {
@@ -19,6 +19,7 @@ const theme = createTheme({
     text: {
       primary: '#212121', 
       secondary: '#757575', 
+      heading:'#444BFF'
     },
     error: {
       main: '#d32f2f', 
@@ -71,7 +72,7 @@ const theme = createTheme({
     },
     button: {
       textTransform: 'none', 
-      fontWeight: 400,
+      fontWeight: 500,
     },
   },
   shape: {
