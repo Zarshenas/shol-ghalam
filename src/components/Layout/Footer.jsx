@@ -1,6 +1,8 @@
+import { Container } from "@mui/material"
+
 function Footer() {
   return (
-    <div>Footer</div>
+    <Container>Footer</Container>
   )
 }
 
