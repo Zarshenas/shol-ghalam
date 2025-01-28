@@ -79,6 +79,11 @@ const theme = createTheme({
     borderRadius: 8, 
   },
   components: {
+    MuiGrid2: {
+      defaultProps: {
+        disableEqualOverflow: true,
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
