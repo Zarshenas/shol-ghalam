@@ -43,7 +43,7 @@ function Home() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: "20%", // Adjust based on how much gradient you want
+          height: "20%",
           background: "linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 100%)",
         }}
       >
