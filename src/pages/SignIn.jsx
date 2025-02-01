@@ -1,7 +1,8 @@
-import {  Box,Stack, Button, Checkbox, CssBaseline,  FormControl, FormControlLabel, FormLabel, Link, TextField, Typography} from '@mui/material';
+import {  Box,Stack, Button, Checkbox, CssBaseline,  FormControl, FormControlLabel, FormLabel, TextField, Typography} from '@mui/material';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 import {PersonOutline , Password} from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -124,23 +125,23 @@ function SignUp() {
             ورود
           </Button>
           <Link
-            component="button"
-            type="button"
-            variant="body2"
-            sx={{ alignSelf: 'center' , fontWeight : 700 ,textDecoration:"none",borderBottom: 1 ,borderBottomStyle:"dashed"}}
+            style={{ alignSelf: 'center' , fontWeight : 700 ,textDecoration:"none",borderBottom: 1 ,borderBottomStyle:"dashed" }}
           >
-            رمز عبور خود را فراموش کرده اید؟
+            <Typography variant="body1" color="text.heading">
+              رمز عبور خود را فراموش کرده اید؟
+            </Typography>
           </Link>
         </Box>
         
           <Typography sx={{ textAlign: 'center' }}>
           هنوز حساب کاربری ندارید؟
             <Link
-              href="/signup"
-              variant="body2"
-              sx={{ alignSelf: 'center', fontWeight : 700 ,textDecoration:"none",borderBottom: 1 ,borderBottomStyle:"dashed"}}
+            to={'/signup'}
+              style={{ alignSelf: 'center', fontWeight : 700 ,textDecoration:"none",borderBottom: 1 ,borderBottomStyle:"dashed"}}
             >
+              <Typography variant="body" color="text.heading">
               ثبت نام
+              </Typography>
             </Link>
           </Typography>
       </Card>

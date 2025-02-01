@@ -1,4 +1,5 @@
 import { AppBar, Box, Button,  Container,  Divider,  Stack,  Toolbar, Typography } from "@mui/material"
+import { Link } from "react-router-dom"
 
 function Header() {
   return (
@@ -22,8 +23,12 @@ function Header() {
                     <Typography variant="body1" fontWeight={"bold"} fontSize={"28px"} >قلم</Typography>
                     </Box>
                     <Stack direction="row" divider={<Divider sx={{margin:"0 8px"}} orientation="vertical" flexItem />}>
-                        <Button sx={{backgroundColor:"transparent" , marginRight:"8px" , color:"text.primary"}}>ثبت نام</Button>
-                        <Button >ورود</Button>
+                        <Link style={{textDecoration:"none"}} to={'/signup'}>
+                            <Button sx={{backgroundColor:"transparent" , marginRight:"8px" , color:"text.primary"}}>ثبت نام</Button>
+                        </Link>
+                        <Link style={{textDecoration:"none"}} to={'/signin'}>
+                            <Button >ورود</Button>
+                        </Link>
                     </Stack>
                 </Box>
             </Toolbar>

@@ -1,7 +1,8 @@
 import {useState} from 'react';
-import {  Box,Stack, Button, CssBaseline, FormControl, FormLabel, Link, TextField, Typography} from '@mui/material';
+import {  Box,Stack, Button, CssBaseline, FormControl, FormLabel, TextField, Typography} from '@mui/material';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -187,11 +188,12 @@ function SignUp() {
             <Typography sx={{ textAlign: 'center' }}>
               قبلا ثبت نام کرده اید؟{' '}
               <Link
-                href="/login"
-                variant="body2"
-                sx={{ alignSelf: 'center', fontWeight : 700 ,textDecoration:"none",borderBottom: 1 ,borderBottomStyle:"dashed" }}
+                to={"/signin"}
+                style={{ alignSelf: 'center', fontWeight : 700 ,textDecoration:"none",borderBottom: 1 ,borderBottomStyle:"dashed" }}
               >
+                <Typography variant="span" color="text.heading">
                 ورود
+                </Typography>
               </Link>
             </Typography>
         </Card>
