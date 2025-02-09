@@ -4,7 +4,7 @@ import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 function Footer() {
   return (
     <>
-    <Box sx={{backgroundColor:"#F4F5F7" ,py:4,flexGrow:"2" ,zIndex:-2 }}>
+    <Box sx={{backgroundColor:"#F4F5F7" ,py:4,flexGrow:"2" }}>
       <Container sx={{position:"relative"}}> 
         <Grid2 container gap={2}>
           <Grid2 size={3} sx={{display:"flex" ,flexDirection:"column" , gap:1 ,}}>
@@ -81,7 +81,6 @@ function Footer() {
             backgroundPosition: 'center',
             scale:5,
             rotate:"24deg",
-            zIndex:-1,
             objectFit:"cover"
           }}
         >
@@ -106,7 +105,6 @@ function Footer() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             rotate:"-24deg",
-            zIndex:-1,
             top:"15%" ,
             left:"0%" , 
             scale:2,
