@@ -10,7 +10,6 @@ function Layout() {
   const noHeaderFooerRoutes = ["/signin", "/signup", "/404"];
   
   const isHeaderFooerHidden = noHeaderFooerRoutes.includes(location.pathname)
-  console.log(location)
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         {!isHeaderFooerHidden && <Header />}

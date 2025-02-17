@@ -1,6 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {configureStore}  from "@reduxjs/toolkit";
+import reducer from "../features/auth/authSlice";
 export const store = configureStore({
     reducer:{
-        auth:"meow"
+        auth:reducer
     }
 })

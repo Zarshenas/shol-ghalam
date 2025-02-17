@@ -3,6 +3,7 @@ import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 import {PersonOutline , Password} from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { useForm ,Controller  } from "react-hook-form"
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -46,108 +47,127 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
-function SignUp() {
+function SignIn() {
+  const { control,register , handleSubmit , formState: { errors },} =useForm();
+  const onSubmit = (data) => {
+    console.log('Form data:', data);
+  };
   return (
     <>
     <CssBaseline enableColorScheme />
-    <SignInContainer direction="column" justifyContent="space-between">
-      <Card variant="outlined">
-      <Box
-        component="img"
-        sx={{
-          width:"50px",
-          margin:"0 auto",
-        }}
-        alt="Logo"
-        src="/Logo.svg"
-      />
-        <Typography
-          component="h1"
-          variant="h4"
-          alignSelf={'center'}
-          sx={{ fontSize: 'clamp(24px, 10vw, 16px)' }}
-        >
-        ورود
-        </Typography>
+      <SignInContainer direction="column" justifyContent="space-between">
+        <Card variant="outlined">
         <Box
-          component="form"
-          noValidate
+          component="img"
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            gap: 2,
+            width:"50px",
+            margin:"0 auto",
           }}
-        >
-          <FormControl >
-            <FormLabel htmlFor="email" sx={{display:"flex"}}>
-              ایمیل
-            <PersonOutline />
-            </FormLabel>
-            <TextField
-              id="email"
-              type="email"
-              name="email"
-              placeholder="your@email.com"
-              autoComplete="email"
-              autoFocus
-              required
-              fullWidth
-              variant="outlined"
-            />
-          </FormControl>
-          <FormControl>
-          <FormLabel htmlFor="email" sx={{display:"flex"}}>
-            رمز عبور
-            <Password/>
-          </FormLabel>
-            <TextField
-              name="password"
-              placeholder="••••••"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              autoFocus
-              required
-              fullWidth
-              variant="outlined"
-            />
-          </FormControl>
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="مرا به خاطر بسپار"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
+          alt="Logo"
+          src="/Logo.svg"
+        />
+          <Typography
+            component="h1"
+            variant="h4"
+            alignSelf={'center'}
+            sx={{ fontSize: 'clamp(24px, 10vw, 16px)' }}
           >
-            ورود
-          </Button>
-          <Link
-            style={{ alignSelf: 'center' , fontWeight : 700 ,textDecoration:"none",borderBottom: 1 ,borderBottomStyle:"dashed" }}
+          ورود
+          </Typography>
+          <Box onSubmit={handleSubmit(onSubmit)}
+            component="form"
+            noValidate
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: '100%',
+              gap: 2,
+            }}
           >
-            <Typography variant="body1" color="text.heading">
-              رمز عبور خود را فراموش کرده اید؟
-            </Typography>
-          </Link>
-        </Box>
-        
-          <Typography sx={{ textAlign: 'center' }}>
-          هنوز حساب کاربری ندارید؟
-            <Link
-            to={'/signup'}
-              style={{ alignSelf: 'center', fontWeight : 700 ,textDecoration:"none",borderBottom: 1 ,borderBottomStyle:"dashed"}}
+                <FormLabel htmlFor="email" sx={{display:"flex"}}>
+                  ایمیل
+                <PersonOutline />
+                </FormLabel>
+                
+            <Controller name="email"
+                control={control}
+                rules={{
+                  required: 'ایمیل را وارد کنید',
+                  pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'ایمیل معتبر نمی باشد',
+          },
+                }}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    variant="outlined"
+                    fullWidth
+                    error={!!errors.email}
+                    helperText={errors.email ? errors.email.message : ''}
+                  />
+                )}
+              />
+              <FormLabel htmlFor="password" sx={{display:"flex"}}>
+                  رمزعبور
+                <Password />
+                </FormLabel>
+              <Controller
+                name="password"
+                control={control}
+                rules={{
+                  required: 'رمز عبور را وارد کنید',
+                  minLength: {
+                    value: 6,
+                    message: 'حداقل 6 کاراکتر وارد کنید',
+                  },
+                }}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      type="password"
+                      variant="outlined"
+                      fullWidth
+                      error={!!errors.password}
+                      helperText={errors.password ? errors.password.message : ''}
+                    />
+                  )}
+                />  
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="مرا به خاطر بسپار"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
             >
-              <Typography variant="body" color="text.heading">
-              ثبت نام
+              ورود
+            </Button>
+            <Link
+              style={{ alignSelf: 'center' , fontWeight : 700 ,textDecoration:"none",borderBottom: 1 ,borderBottomStyle:"dashed" }}
+            >
+              <Typography variant="body1" color="text.heading">
+                رمز عبور خود را فراموش کرده اید؟
               </Typography>
             </Link>
-          </Typography>
-      </Card>
-    </SignInContainer>
+          </Box>
+          
+            <Typography sx={{ textAlign: 'center' }}>
+            هنوز حساب کاربری ندارید؟
+              <Link
+              to={'/signup'}
+                style={{ alignSelf: 'center', fontWeight : 700 ,textDecoration:"none",borderBottom: 1 ,borderBottomStyle:"dashed"}}
+              >
+                <Typography variant="body" color="text.heading">
+                ثبت نام
+                </Typography>
+              </Link>
+            </Typography>
+        </Card>
+      </SignInContainer>
     </>
   );
 }
 
-export default SignUp
+export default SignIn
