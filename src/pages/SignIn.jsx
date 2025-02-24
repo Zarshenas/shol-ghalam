@@ -1,9 +1,13 @@
-import {  Box,Stack, Button, Checkbox, CssBaseline,  FormControl, FormControlLabel, FormLabel, TextField, Typography} from '@mui/material';
+import {  Box,Stack, Button, Checkbox, CssBaseline,FormControlLabel, FormLabel, TextField, Typography} from '@mui/material';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 import {PersonOutline , Password} from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link, replace, useNavigate } from 'react-router-dom';
 import { useForm ,Controller  } from "react-hook-form"
+import { login, selectAuth } from '../features/auth/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import toast, { Toaster } from 'react-hot-toast';
+import Cookies from 'js-cookie';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -48,9 +52,22 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }));
 
 function SignIn() {
-  const { control,register , handleSubmit , formState: { errors },} =useForm();
+  const navigate = useNavigate()
+  const { clearErrors,control, handleSubmit , formState: { errors },} =useForm();
+  const dispatch = useDispatch();
+const {status , token , error} = useSelector(selectAuth)
   const onSubmit = (data) => {
-    console.log('Form data:', data);
+    clearErrors()
+    dispatch(login(data)).unwrap();
+    if(status ==="succeeded" && error === null){
+      Cookies.set("token",token,{secure:true , expires:1 })
+      toast.success('خوش آمدید.')
+      navigate('/',{replace:true})
+    }
+    if(status ==="failed" && error !== null){
+      toast.error(error || 'مشکلی در ورود شما به وجود آمد.')
+    }
+    
   };
   return (
     <>
@@ -101,6 +118,7 @@ function SignIn() {
                 render={({ field }) => (
                   <TextField
                     {...field}
+                    type='email'
                     variant="outlined"
                     fullWidth
                     error={!!errors.email}
@@ -141,6 +159,7 @@ function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
+              disabled={status ==="loading"}
             >
               ورود
             </Button>
@@ -165,6 +184,7 @@ function SignIn() {
               </Link>
             </Typography>
         </Card>
+        <Toaster position='bottom-right'/>
       </SignInContainer>
     </>
   );

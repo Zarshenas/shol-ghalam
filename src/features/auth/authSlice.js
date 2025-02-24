@@ -5,10 +5,10 @@ export const login = createAsyncThunk(
   "auth/login",
   async (credentials, { rejectWithValue }) => {
     try {
+      console.log(credentials);
       const response = await api.post("/auth/signin", credentials);
       return response;
     } catch (error) {
-      console.log(error);
       return rejectWithValue(error);
     }
   }
@@ -17,17 +17,17 @@ export const login = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: null,
     token: null,
     status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
     error: null,
+    isAuthenticated:false,
   },
   reducers: {
     logout: (state) => {
-      state.user = null;
       state.token = null;
       state.status = "idle";
       state.error = null;
+      state.isAuthenticated = false;
     },
   },
   extraReducers: (builder) => {
@@ -37,12 +37,15 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.token = action.payload.token;
-        state.user = action.payload.user;
+        state.token = action.payload.data.access;
+        state.error =null;
+        state.isAuthenticated = true
       })
       .addCase(login.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.payload;
+        state.error = action.payload.response.data.message;
+        state.token = null;
+        state.isAuthenticated = false
       });
   },
 });
@@ -50,3 +53,5 @@ const authSlice = createSlice({
 export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;
+
+export const selectAuth = (state)=>state.auth

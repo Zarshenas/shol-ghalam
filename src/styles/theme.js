@@ -81,7 +81,7 @@ const theme = createTheme({
   components: {
     MuiGrid2: {
       defaultProps: {
-        disableEqualOverflow: true,
+        disableequaloverflow: "true",
       },
     },
     MuiButton: {
